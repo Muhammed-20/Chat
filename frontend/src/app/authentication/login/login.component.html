@@ -1,0 +1,33 @@
+<div class="login-container">
+  <div class="login" [formGroup]="loginForm">
+    <mat-form-field class="w-100" color="primary" appearance="outline">
+      <input matInput placeholder="Kullanıcı adı" formControlName="userName">
+    </mat-form-field>
+
+    <mat-form-field class="w-100" color="primary" appearance="outline" >
+      <input [type]="isType ? 'password' : 'text'" matInput placeholder="Şifre" formControlName="password">
+      <mat-icon style="position: relative;z-index: 1;cursor: pointer;" (click)="isType = !isType" matSuffix>{{isType ? 'vpn_key' : 'vpn_key_off'}}</mat-icon>
+    </mat-form-field>
+
+    <div class="btn-group w-100" >
+      <button (click)="login()" [disabled]="loginForm.invalid || isLoading" class="w-100" mat-flat-button>
+        <div style="display: flex;justify-content: center;align-items: center;">
+          <span style="margin-right: 5px;">Giriş</span>
+          @if (isLoading) {
+            <mat-progress-spinner
+              [diameter]="30"
+              class="spinner"
+              [mode]="mode"
+              [value]="value"
+              color="primary"
+            >
+            </mat-progress-spinner>
+          }
+        </div>
+      </button>
+      <div class="create-account">
+        <a routerLink="/auth/create-account">Kayıt ol</a>
+      </div>
+    </div>
+  </div>
+</div>
